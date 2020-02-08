@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { StoreProvider, StoreConsumer } from "./components/Store/index";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Header from "./components/Header";
 
-export default App;
+import Filter from "./components/List/Filter";
+import ListDetails from "./components/List/ListDetails";
+import "./style.css";
+const Home = () => (
+  <div>
+    <StoreProvider>
+      <Header />
+      <div className="layout-plz">
+        <Filter />
+        <ListDetails />
+      </div>
+    </StoreProvider>
+  </div>
+);
+
+export default Home;

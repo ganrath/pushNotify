@@ -52,7 +52,7 @@ export function register(config) {
         askPermission();
         subscribeUserToPush(swUrl);
         /* eslint-disable-next-line no-restricted-globals */
-        self.addEventListener("push", function(event) {
+        window.self.addEventListener("push", function(event) {
           console.log("[Service Worker] Push Received.");
           console.log(
             `[Service Worker] Push had this data: "${event.data.text()}"`

@@ -49,8 +49,8 @@ export function register(config) {
       } else {
         // Is not localhost. Just register service worker
         registerValidSW(swUrl, config);
-        console.log("push notification");
         askPermission();
+        subscribeUserToPush(swUrl);
       }
     });
   }
@@ -150,4 +150,24 @@ async function askPermission() {
       throw new Error("We weren't granted permission.");
     }
   });
+}
+
+async function subscribeUserToPush(swf) {
+  return navigator.serviceWorker
+    .register(swf)
+    .then(function(registration) {
+      const subscribeOptions = {
+        userVisibleOnly: true,
+        applicationServerKey: urlBase64ToUint8Array(process.env.WP_PUBLIC_KEY)
+      };
+
+      return registration.pushManager.subscribe(subscribeOptions);
+    })
+    .then(function(pushSubscription) {
+      console.log(
+        "Received PushSubscription: ",
+        JSON.stringify(pushSubscription)
+      );
+      return pushSubscription;
+    });
 }

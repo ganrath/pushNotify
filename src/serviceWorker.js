@@ -30,7 +30,7 @@ export function register(config) {
       // serve assets; see https://github.com/facebook/create-react-app/issues/2374
       return;
     }
-    console.log("push notification");
+
     window.addEventListener("load", () => {
       const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
 
@@ -49,6 +49,8 @@ export function register(config) {
       } else {
         // Is not localhost. Just register service worker
         registerValidSW(swUrl, config);
+        console.log("push notification");
+        askPermission();
       }
     });
   }
@@ -134,4 +136,20 @@ export function unregister() {
       registration.unregister();
     });
   }
+}
+
+function askPermission() {
+  return new Promise(function(resolve, reject) {
+    const permissionResult = Notification.requestPermission(function(result) {
+      resolve(result);
+    });
+
+    if (permissionResult) {
+      permissionResult.then(resolve, reject);
+    }
+  }).then(function(permissionResult) {
+    if (permissionResult !== "granted") {
+      throw new Error("We weren't granted permission.");
+    }
+  });
 }

@@ -65,7 +65,9 @@ export function register(config) {
             badge: "images/badge.png"
           };
 
-          event.waitUntil(self.registration.showNotification(title, options));
+          event.waitUntil(
+            window.self.registration.showNotification(title, options)
+          );
         });
       }
     });

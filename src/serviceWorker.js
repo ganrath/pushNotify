@@ -145,10 +145,11 @@ async function askPermission() {
     ) {
       resolve(result);
     });
-
-    if (permissionResult) {
-      permissionResult.then(resolve, reject);
-    }
+    (async function() {
+      if (permissionResult) {
+        await permissionResult.then(resolve, reject);
+      }
+    })();
   }).then(function(permissionResult) {
     if (permissionResult !== "granted") {
       throw new Error("We weren't granted permission.");

@@ -139,8 +139,10 @@ export function unregister() {
 }
 
 async function askPermission() {
-  return new Promise(function(resolve, reject) {
-   await const permissionResult = Notification.requestPermission(function(result) {
+  return new Promise( function(resolve, reject) {
+    const permissionResult = await Notification.requestPermission(function(
+      result
+    ) {
       resolve(result);
     });
 

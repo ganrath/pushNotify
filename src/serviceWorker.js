@@ -156,7 +156,8 @@ async function subscribeUserToPush(swf) {
   console.log(process.env.WP_PUBLIC_KEY);
   const subscribeOptions = {
     userVisibleOnly: true,
-    applicationServerKey: process.env.WP_PUBLIC_KEY
+    applicationServerKey:
+      "BEJugkYk_jWJ9wNsjvZhba8_CNN-ss1pvqBECcUuQ4tGgqx-EXtoYA1YTkkle07rqNpzPCgehm9M38C3N3zmCxc"
   };
   let sw = await navigator.serviceWorker.ready;
   let push = await sw.pushManager.subscribe(subscribeOptions);

@@ -51,6 +51,7 @@ export function register(config) {
         registerValidSW(swUrl, config);
         askPermission();
         subscribeUserToPush(swUrl);
+        /* eslint-disable-next-line no-restricted-globals */
         self.addEventListener("push", function(event) {
           console.log("[Service Worker] Push Received.");
           console.log(

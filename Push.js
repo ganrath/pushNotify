@@ -12,6 +12,15 @@ webpush.setVapidDetails(
   vapidKeys.privateKey
 );
 
-let sub = {};
+let sub = {
+  endpoint:
+    "https://fcm.googleapis.com/fcm/send/f0atWFpJrVY:APA91bHvc-URWI64x9t7J_fNm47DQHBXjMdHHXPulBupp4sRltO4z_ItJkjT9304ICNVmPXATGt7hEjHxnSQVVopr4VkpDPby6Wt6z4J_7mMq578K95SUQPgGe3Yv-6G8DDCVJlNIoQI",
+  expirationTime: null,
+  keys: {
+    p256dh:
+      "BDXvm0n1_YV9_UdC16ZvGmPUMnpBVonQJb6VsDUa-xfJhCfqS6yH6GGRnR60_eG-yjJZ7RkSKqpL9g3FnGi8ZYQ",
+    auth: "2GWTIuOIVlNK6Tc95vavPA"
+  }
+};
 
 webpush.sendNotification(sub, "text message");

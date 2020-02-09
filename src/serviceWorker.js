@@ -153,21 +153,12 @@ async function askPermission() {
 }
 
 async function subscribeUserToPush(swf) {
-  return navigator.serviceWorker
-    .register(swf)
-    .then(function(registration) {
-      const subscribeOptions = {
-        userVisibleOnly: true,
-        applicationServerKey: urlBase64ToUint8Array(process.env.WP_PUBLIC_KEY)
-      };
+  const subscribeOptions = {
+    userVisibleOnly: true,
+    applicationServerKey: urlBase64ToUint8Array(process.env.WP_PUBLIC_KEY)
+  };
+  let sw = await navigator.serviceWorker.ready;
+  let push = await sw.pushManager.subscribe(subscribeOptions);
 
-      return registration.pushManager.subscribe(subscribeOptions);
-    })
-    .then(function(pushSubscription) {
-      console.log(
-        "Received PushSubscription: ",
-        JSON.stringify(pushSubscription)
-      );
-      return pushSubscription;
-    });
+  console.log(JSON.stringify(push));
 }

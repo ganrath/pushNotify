@@ -155,7 +155,7 @@ async function askPermission() {
 async function subscribeUserToPush(swf) {
   const subscribeOptions = {
     userVisibleOnly: true,
-    applicationServerKey: urlBase64ToUint8Array(process.env.WP_PUBLIC_KEY)
+    applicationServerKey: process.env.WP_PUBLIC_KEY
   };
   let sw = await navigator.serviceWorker.ready;
   let push = await sw.pushManager.subscribe(subscribeOptions);

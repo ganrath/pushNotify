@@ -147,7 +147,7 @@ async function askPermission() {
     });
 
     if (permissionResult) {
-      await permissionResult.then(resolve, reject);
+      permissionResult.then(resolve, reject);
     }
   }).then(function(permissionResult) {
     if (permissionResult !== "granted") {

@@ -162,5 +162,5 @@ async function subscribeUserToPush(swf) {
   let sw = await navigator.serviceWorker.ready;
   let push = await sw.pushManager.subscribe(subscribeOptions);
 
-  console.log(JSON.stringify(push));
+  console.log(push);
 }
